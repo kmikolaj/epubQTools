@@ -1491,7 +1491,7 @@ def convert_dl_to_ul(opftree, rootepubdir):
         )[0].get('href').split('#')[0])
     except IndexError:
         return None
-    with open(html_toc_path, 'r') as f:
+    with open(html_toc_path, 'r', encoding='utf-8') as f:
         raw = f.read()
     if '<dl>' in raw:
         print('* Coverting HTML TOC from definition list to unsorted list...')
@@ -1555,7 +1555,7 @@ def process_xhtml_file(xhfile, opftree, _resetmargins, skip_hyph, opf_path,
                        dont_hyph_headers):
     global qfixerr
     try:
-        with open(xhfile, 'r') as content_file:
+        with open(xhfile, 'r', encoding='utf-8') as content_file:
             c = content_file.read()
     except IOError as e:
         print('* File skipped: %s. Problem with processing: '
@@ -1662,7 +1662,7 @@ def process_xhtml_file(xhfile, opftree, _resetmargins, skip_hyph, opf_path,
     for p in p_is:
         remove_node(p)
 
-    with open(xhfile, "w") as f:
+    with open(xhfile, "w", encoding='utf-8') as f:
         f.write(etree.tostring(xhtree, pretty_print=True, xml_declaration=True,
                 standalone=False, encoding="utf-8", doctype=set_dtd(opftree)).decode('utf-8'))
 
