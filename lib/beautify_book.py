@@ -572,8 +572,11 @@ def beautify_book(root, f, user_font_dir, pair_family):
     opf_dir, opf_file, is_fixed = find_roots(tempdir)
     epub_dir = os.path.join(tempdir, opf_dir)
     opf_path = os.path.join(tempdir, opf_file)
-    parser = etree.XMLParser(remove_blank_text=True)
+    # problemo
+    parser = etree.XMLParser(remove_blank_text=True, encoding='utf-8')
+    # problemo
     opftree = etree.parse(opf_path, parser)
+    # problemo
     ncxfile = etree.XPath(
         '//opf:item[@media-type="application/x-dtbncx+xml"]',
         namespaces=OPFNS
